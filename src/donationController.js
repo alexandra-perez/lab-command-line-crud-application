@@ -21,10 +21,17 @@ function create(donations, { ...args }) {
     purchaseAmount: process.argv[4],
     donationAmount: process.argv[5],
   };
-
   donations.push(donation);
-
   return donations;
 }
 
-module.exports = { index, create };
+function show(donations, id) {
+  const donation = donations.find(donation => donation.id === id);
+  return `${chalk.green('ID:')} ${donation.id} ${chalk.green('Name:')} ${
+    donation.name
+  } ${chalk.green('Amount:')} ${donation.purchaseAmount} ${chalk.green(
+    'Donation:'
+  )} ${donation.donationAmount}`;
+}
+
+module.exports = { index, create, show };
