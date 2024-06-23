@@ -34,22 +34,6 @@ function show(donations, id) {
   )} ${donation.donationAmount}`;
 }
 
-// function update(donations, id, ...args) {
-//   console.log('args:', ...args);
-
-//   let donation = donations.find((donation) => donation.id === id);
-
-//   donation = {
-//     id: id,
-//     name: args[0],
-//     purchaseAmount: args[1],
-//     donationAmount: args[2],
-//   };
-
-//   console.log(donation);
-//   return `${chalk.green(`${donation}`)}`;
-// }
-
 function update(donations, id, name, purchaseAmount, donationAmount) {
   let index = donations.findIndex((donation) => donation.id === id);
 
