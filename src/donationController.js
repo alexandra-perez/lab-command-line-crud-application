@@ -45,10 +45,29 @@ function update(donations, id, name, purchaseAmount, donationAmount) {
       donationAmount: donationAmount,
     };
   } else {
-    console.log(chalk.red('No donation found. Please verify the ID number is correct and try again.'));
+    console.log(
+      chalk.red(
+        'No donation found. Please verify the ID number is correct and try again.'
+      )
+    );
   }
 
   return donations;
 }
 
-module.exports = { index, create, show, update };
+function destroy(donations, id) {
+  const index = donations.findIndex((donation) => donation.id === id);
+  if (index > -1) {
+    donations.splice(index, 1);
+  } else {
+    console.log(
+      chalk.red(
+        'No donation found. Please verify the ID number is correct and try again.'
+      )
+    );
+  }
+
+  return donations;
+}
+
+module.exports = { index, create, show, update, destroy };

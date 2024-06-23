@@ -5,7 +5,13 @@ const {
   readJSONFile,
   writeJSONFile,
 } = require('./src/helpers');
-const { index, create, show, update } = require('./src/donationController');
+const {
+  index,
+  create,
+  show,
+  update,
+  destroy,
+} = require('./src/donationController');
 
 function run() {
   const inform = console.log;
@@ -42,6 +48,8 @@ function run() {
       writeToFile = true;
       break;
     case 'delete':
+      updatedDonations = destroy(donations, process.argv[3]);
+      writeToFile = true;
       break;
   }
   if (writeToFile) {
