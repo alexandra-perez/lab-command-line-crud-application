@@ -26,7 +26,7 @@ function create(donations, { ...args }) {
 }
 
 function show(donations, id) {
-  const donation = donations.find(donation => donation.id === id);
+  const donation = donations.find((donation) => donation.id === id);
   return `${chalk.green('ID:')} ${donation.id} ${chalk.green('Name:')} ${
     donation.name
   } ${chalk.green('Amount:')} ${donation.purchaseAmount} ${chalk.green(
@@ -34,4 +34,37 @@ function show(donations, id) {
   )} ${donation.donationAmount}`;
 }
 
-module.exports = { index, create, show };
+// function update(donations, id, ...args) {
+//   console.log('args:', ...args);
+
+//   let donation = donations.find((donation) => donation.id === id);
+
+//   donation = {
+//     id: id,
+//     name: args[0],
+//     purchaseAmount: args[1],
+//     donationAmount: args[2],
+//   };
+
+//   console.log(donation);
+//   return `${chalk.green(`${donation}`)}`;
+// }
+
+function update(donations, id, name, purchaseAmount, donationAmount) {
+  let index = donations.findIndex((donation) => donation.id === id);
+
+  if (index > -1) {
+    donations[index] = {
+      id: id,
+      name: name,
+      purchaseAmount: purchaseAmount,
+      donationAmount: donationAmount,
+    };
+  } else {
+    console.log(chalk.red('No donation found. Please verify the ID number is correct and try again.'));
+  }
+
+  return donations;
+}
+
+module.exports = { index, create, show, update };

@@ -5,7 +5,7 @@ const {
   readJSONFile,
   writeJSONFile,
 } = require('./src/helpers');
-const { index, create, show } = require('./src/donationController');
+const { index, create, show, update } = require('./src/donationController');
 
 function run() {
   const inform = console.log;
@@ -27,8 +27,21 @@ function run() {
       inform(updatedDonations);
       break;
     case 'show':
-      const showView = show(donations, process.argv[3]);
+      const showView = show(donations, id, process.argv[4]);
       inform(showView);
+      break;
+    case 'update':
+      updatedDonations = update(
+        donations,
+        process.argv[3],
+        process.argv[4],
+        process.argv[5],
+        process.argv[6]
+      );
+      // inform(updatedDonations)
+      writeToFile = true;
+      break;
+    case 'delete':
       break;
   }
   if (writeToFile) {
