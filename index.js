@@ -18,6 +18,7 @@ function run() {
   switch (action) {
     case 'index':
       donationsView = index(donations);
+      inform(donationsView);
       break;
     case 'create':
       updatedDonations = create(donations, process.argv.slice(3));
@@ -31,4 +32,4 @@ function run() {
   }
 }
 
-run()
+run();

@@ -3,10 +3,18 @@ const { writeJSONFile } = require('./helpers');
 const chalk = require('chalk');
 
 function index(donations) {
-  return donations;
+  return donations
+    .map((donation) => {
+      return `${chalk.green('ID:')} ${donation.id} ${chalk.green('Name:')} ${
+        donation.name
+      } ${chalk.green('Amount:')} ${donation.purchaseAmount} ${chalk.green(
+        'Donation:'
+      )} ${donation.donationAmount}`;
+    })
+    .join('/n');
 }
 
-function create(donations, {...args}) {
+function create(donations, { ...args }) {
   const donation = {
     id: nanoid(8),
     name: process.argv[3],
